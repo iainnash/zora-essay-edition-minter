@@ -3,4 +3,6 @@ const nextConfig = {
   reactStrictMode: true,
 };
 
-module.exports = nextConfig;
+const removeImports = require('next-remove-imports')(nextConfig)
+
+module.exports = removeImports({experimental:{esmExternals:true}});
