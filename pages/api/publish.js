@@ -24,7 +24,6 @@ async function uploadToPinata(content, contentType) {
     JSON.stringify({ keyvalues: { type: "essay" } })
   );
   
-  // formData.append(new Blob([content], { type: contentType }));
   formData.append("file", Buffer.from(content, 'utf-8'), 'page.html');
 
   const response = await fetch("https://api.pinata.cloud/pinning/pinFileToIPFS", {
@@ -55,6 +54,4 @@ export default async function handler(req, res) {
   const essayCID = await uploadToPinata(essayHTML, "text/html");
 
   res.status(200).send({imageCID, essayCID});
-
-  // the rest of your code
 }
